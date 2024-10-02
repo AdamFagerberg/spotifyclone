@@ -5,11 +5,11 @@ export function CalcTime(time) {
   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 
-export function CheckVisibility(containerRef) {
+export function CheckVisibility(containerRef, className) {
   const container = containerRef.current;
   if (!container) return;
 
-  const items = container.querySelectorAll(".playlist-item");
+  const items = container.querySelectorAll(className);
   items.forEach((item) => {
     const rect = item.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();

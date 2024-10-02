@@ -9,7 +9,7 @@ export default function AlbumCard({ imgSrc, title, artists, id }) {
   const router = useRouter();
 
   function handleRedirect() {
-    router.push(`album/${id}`);
+    router.push(`/album/${id}`);
   }
 
   function handleStop(e) {

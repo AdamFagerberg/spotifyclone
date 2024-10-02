@@ -4,8 +4,6 @@ import { useSession } from "next-auth/react";
 import { SearchFetch } from "@/utils/Fetch";
 import { useEffect, useState } from "react";
 
-import { FaPlay } from "react-icons/fa6";
-
 import ArtistCard from "@/components/Global/ArtistCard";
 import PlaylistCard from "@/components/Global/PlaylistCard";
 import SearchPageTrack from "@/components/SearchPage/SearchPageTrack";
@@ -21,7 +19,6 @@ export default function SearchPage({ params }) {
     if (session?.accessToken) {
       async function getSearch() {
         const data = await SearchFetch(session, params.query);
-        console.log(data);
         setArtists(data?.artists?.items);
         setPlaylists(data?.playlists?.items);
         setTracks(data?.tracks?.items);
@@ -38,6 +35,7 @@ export default function SearchPage({ params }) {
           <div className="h-64 pr-8">
             {playlists && (
               <TopResult
+                key={playlists[0].id}
                 imgSrc={playlists[0].images[0].url}
                 title={playlists[0].name}
                 owner={playlists[0].owner.display_name}
@@ -88,6 +86,7 @@ export default function SearchPage({ params }) {
           {playlists?.slice(0, 4).map((playlist) => {
             return (
               <PlaylistCard
+                key={playlist.id}
                 id={playlist.id}
                 imgSrc={playlist?.images[0].url}
                 title={playlist.name}

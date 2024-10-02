@@ -18,6 +18,10 @@ export default function PlaylistTrack({
 }) {
   const { currentDeviceId } = useDevice();
 
+  function handleStop(e) {
+    e.stopPropagation();
+  }
+
   return (
     <div
       className="playlistTrackGrid gap-4 py-2 rounded-md items-center hover:bg-spotifyGray"
@@ -45,7 +49,12 @@ export default function PlaylistTrack({
               key={artist.id}
             >
               {index > 0 && ", "}
-              <Link href={`/artist/${artist.id}`}>{artist.name}</Link>
+              <Link
+                href={`/artist/${artist.id}`}
+                onClick={(e) => handleStop(e)}
+              >
+                {artist.name}
+              </Link>
             </p>
           ))}
         </div>

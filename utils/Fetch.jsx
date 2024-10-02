@@ -134,3 +134,64 @@ export async function PlayPlaylistSong(
     }
   }
 }
+
+export async function ArtistFetch(session, id) {
+  if (session?.accessToken) {
+    const res = await fetch(`https://api.spotify.com/v1/artists/${id}`, {
+      headers: {
+        Authorization: `Bearer ${session.accessToken}`,
+      },
+    });
+    const data = await res.json();
+    return data;
+  }
+  return null;
+}
+
+export async function ArtistTopTracks(session, id) {
+  if (session?.accessToken) {
+    const res = await fetch(
+      `https://api.spotify.com/v1/artists/${id}/top-tracks`,
+      {
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  }
+  return null;
+}
+
+export async function ArtistRelated(session, id) {
+  if (session?.accessToken) {
+    const res = await fetch(
+      `https://api.spotify.com/v1/artists/${id}/related-artists`,
+      {
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  }
+  return null;
+}
+
+export async function ArtistAlbums(session, id) {
+  if (session?.accessToken) {
+    const res = await fetch(
+      `https://api.spotify.com/v1/artists/${id}/albums?limit=8`,
+      {
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  }
+  return null;
+}

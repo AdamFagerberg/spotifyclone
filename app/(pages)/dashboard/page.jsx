@@ -35,8 +35,8 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const handleResize = () => {
-      CheckVisibility(playlistsContainerRef);
-      CheckVisibility(albumsContainerRef);
+      CheckVisibility(playlistsContainerRef, ".playlist-item");
+      CheckVisibility(albumsContainerRef, ".playlist-item");
     };
 
     window.addEventListener("resize", handleResize);
@@ -45,18 +45,18 @@ export default function DashboardPage() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [AlbumContainer, featuredPlaylists]);
+  }, [newAlbums, featuredPlaylists]);
 
   return (
     <>
-      {featuredPlaylists && featuredPlaylists.length > 0 ? (
+      {featuredPlaylists && featuredPlaylists.length > 0 && (
         <>
           <AlbumContainer title={featuredTitle}>
             <ul className="playlists-row" ref={playlistsContainerRef}>
               {featuredPlaylists.map((playlist) => (
                 <li key={playlist.id} className="playlist-item mx-5">
                   <PlaylistCard
-                    imgSrc={playlist.images[0].url}
+                    imgSrc={playlist?.images[0].url}
                     title={playlist.name}
                     owner={playlist.owner.display_name}
                     id={playlist.id}
@@ -81,8 +81,6 @@ export default function DashboardPage() {
             </ul>
           </AlbumContainer>
         </>
-      ) : (
-        <div>No playlists found</div>
       )}
     </>
   );

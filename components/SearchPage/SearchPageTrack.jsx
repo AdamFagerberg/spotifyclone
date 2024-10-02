@@ -33,6 +33,7 @@ export default function SearchPageTrack({
         <p>{title}</p>
         {artists?.map((artist, index) => (
           <Link
+            key={artist.id}
             href={`/artist/${artist.id}`}
             className="text-sm text-spotifyLGray hover:underline"
           >

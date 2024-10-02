@@ -124,16 +124,11 @@ export default function MusicPlayer() {
     player.setVolume(e.target.value);
   };
 
-  /*   {current_track.artists[0]?.name} */
-  {
-    /* <h3 className="text-spotifyLGray overflow-hidden text-ellipsis">
-     */
-  }
   return (
     <div className="player p-4 bg-spotifyLBlack rounded-md">
       {is_active && current_track ? (
         <>
-          <div className="flex gap-5">
+          <div className="flex gap-5" key={current_track?.id}>
             <div>
               <Image
                 src={current_track?.album?.images[0]?.url}

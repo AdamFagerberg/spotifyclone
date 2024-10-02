@@ -57,3 +57,7 @@
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
 }
+
+.artistpage-item {
+  transition: visibility 0.2s ease-in-out;
+}

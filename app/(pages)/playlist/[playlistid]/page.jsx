@@ -20,7 +20,6 @@ export default function PlaylistPage({ params }) {
           params?.playlistid,
           session
         );
-        console.log(tracks.items);
         setPlaylistTracks(tracks?.items);
       }
     }
@@ -29,11 +28,12 @@ export default function PlaylistPage({ params }) {
 
   return (
     <>
-      {playlistTracks && playlistTracks?.length > 0 ? (
+      {playlistTracks && playlistTracks?.length > 0 && (
         <ul>
           {playlistTracks?.map((track, index) => (
             <li key={track?.track?.id}>
               <PlaylistTrack
+                key={track?.track?.id}
                 imgSrc={track?.track?.album?.images[0].url}
                 title={track?.track?.name}
                 artists={track?.track?.artists}
@@ -47,8 +47,6 @@ export default function PlaylistPage({ params }) {
             </li>
           ))}
         </ul>
-      ) : (
-        <div>No tracks found</div>
       )}
     </>
   );
